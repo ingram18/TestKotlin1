@@ -28,7 +28,7 @@ class Country(s: String, i: Int) {
         var math = 20
         var eng = 30
 
-        var max = (math > eng) ? math : eng
+        var max = if  (math > eng)  math  else eng  //無java的三元運算 ?:
 
         print("max value : $max")
 
@@ -41,7 +41,7 @@ fun main(args: Array<String>) {
     //TestKeyIn()
 
     var score : Int
-    var s:String?
+    var s:String? = null
 
     println("s = ${s?.get(3)}")
     //println("s = ${s!!.get(3)}")
@@ -52,7 +52,7 @@ fun main(args: Array<String>) {
 
     Country("England", 30).TestForloop()
 
-    Country().TestIfElse()
+    Country("Japan" , 30).TestIfElse()
 
 }
 
