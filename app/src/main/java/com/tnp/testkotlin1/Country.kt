@@ -2,7 +2,7 @@ package com.tnp.testkotlin1
 
 import java.util.*
 
-class Country(s: String, i: Int) {
+class Country(s: String = "", i: Int = 0 ) {
 
     var charA = 'a'
     var weight = 33.6f
@@ -14,6 +14,10 @@ class Country(s: String, i: Int) {
 
     }
 
+    /*constructor() {
+
+    }*/
+
     fun TestForloop() {
 
         for ( i in 1..4) {
@@ -24,15 +28,88 @@ class Country(s: String, i: Int) {
 
     }
 
-    fun TestIfElse() {
+    fun TestFor() {
+
+        print("i is ")
+        for (i in 1..100 step 10) {
+
+            print("$i ")
+        }
+       println()
+
+
+    }
+
+    //
+    fun TestIfElse() : Int{
         var math = 20
         var eng = 30
 
+        //case 1
         var max = if  (math > eng)  math  else eng  //無java的三元運算 ?:
+        //case 2
+        max = if (math > eng) {
+            println("max is Math: &math")
+            math
+        } else {
+            println("max is English : $eng")
+            eng
+        }
 
-        print("max value : $max")
+        //case 3
+        println("if english > 30 then pass : " + if (eng > 30) "PASS" else "Failed")
+
+
+        return max;
+
+        println("max value : $max")
 
     }
+
+
+    fun TestWhen(grading : Int) : Char {
+        var grading:Char = when (grading) {
+
+            in 90..100 -> 'A'
+            in 80..89 -> 'B'
+            76,77,78,79 -> 'C'
+            else -> 'F'
+
+        }
+
+        println("The grading is $grading")
+
+        return grading
+
+
+
+    }
+
+
+    fun TestWhen1(grading: Int) = when (grading) {
+
+        in 90..100 -> 'A'
+        in 80..89 -> 'B'
+        76,77,78,79 -> 'C'
+        else -> 'F'
+
+
+    }
+
+
+    fun testAssertion(value : Int) : Int{
+
+        var result = when (value) {
+
+            in 1..100 -> 0
+            else -> 1
+
+        }
+        return result
+
+    }
+
+
 
 }
 
@@ -53,6 +130,9 @@ fun main(args: Array<String>) {
     Country("England", 30).TestForloop()
 
     Country("Japan" , 30).TestIfElse()
+    Country("korea" , 31).TestWhen(78)
+    Country("korea" , 31).TestWhen1(77)
+    Country("korea" , 31).TestFor()
 
 }
 
