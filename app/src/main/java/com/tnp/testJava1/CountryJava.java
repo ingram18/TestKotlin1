@@ -1,16 +1,49 @@
 package com.tnp.testJava1;
 
+import android.os.Build;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 public class CountryJava {
 
     public static void main(String[] args) {
 
-        testDate1();
+       // testDate1();
+
+        //testDate2();
+        //java8
+        //testJava8Date();
 
 
+    }
+
+    private static void testJava8Date() {
+        Instant instant = Instant.now();
+        System.out.println(instant);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm:ss");
+
+        System.out.println(formatter.format(now));
+        LocalDateTime other = LocalDateTime.of(2022,3,12,13,2,33);
+        System.out.println(other);
+    }
+
+    private static void testDate2() {
+        //mutable
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        System.out.println("date1:" + date);
+        calendar.set(Calendar.MONTH , 9);  // 0:January
+        calendar.add(Calendar.DAY_OF_YEAR ,3 );
+        date = calendar.getTime();
+        System.out.println("date2:" + date);
     }
 
     private static void testDate1() {
