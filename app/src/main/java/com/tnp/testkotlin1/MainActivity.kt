@@ -2,6 +2,7 @@ package com.tnp.testkotlin1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tnp.testJava1.lottery.BigGame
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,11 +13,22 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun main(args: Array<String>) {
-    KeyinTest(args)
+    //KeyinTest(args)
 
     var ctry = Country("England" , 30)
 
+    //testCallJava()
 
+    var newString = "01234567890".newString(); //extension
+    println(newString)
+
+
+}
+
+private fun testCallJava() {
+    var callJava = BigGame();
+    callJava.testInt = 10;
+    callJava.generate();
 }
 
 private fun KeyinTest(args: Array<String>) {

@@ -2,6 +2,9 @@ package com.tnp.testJava1;
 
 import android.os.Build;
 
+import com.tnp.testJava1.lottery.Game539;
+import com.tnp.testkotlin1.school.Student;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -21,6 +24,26 @@ public class CountryJava {
         //testJava8Date();
 
 
+        //testCallKotlin();
+
+        Game539 game539 = new Game539();
+        game539.testInt = 3;
+
+
+
+
+
+
+
+
+
+
+    }
+
+    private static void testCallKotlin() {
+        Student stu = new Student("test1" , 10  ,30);
+        System.out.println(Student.getPass()); //call static value
+        stu.printData();
     }
 
     private static void testJava8Date() {
