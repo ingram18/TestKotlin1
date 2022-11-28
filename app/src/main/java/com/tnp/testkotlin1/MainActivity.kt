@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -20,6 +21,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     var secretNumber = SecretNumber()
+    val TAG = MainActivity::class.java.simpleName;  //得到class名稱
 
     private lateinit var testText : TextView  //https://ithelp.ithome.com.tw/articles/10240620
     private lateinit var btn : Button
@@ -33,32 +35,39 @@ class MainActivity : AppCompatActivity() {
 //        test.textView.text
 
         testText = findViewById(R.id.number);
-        Log.d("test",testText.text.toString());
+        Log.d(TAG,testText.text.toString());
 
     }
 
 
     fun check(view : View) {
         val n = number.text.toString().toInt()
+        //ref : https://techiedelight.com/zh/get-name-current-function-kotlin/
+        val TAG = object{}.javaClass.enclosingMethod?.name;  //得到所在FUN名稱,即check
         println("number : $n")
-        Log.d("MainActivity", "number:"+n)
+        Log.d(TAG, "number:"+n)
 
         val diff = secretNumber.validate(n)
-        var msg = "命中"
+        var msg = getString(R.string.you_got_it)//resources.getString(R.string.you_got_it)
+
 
         if ( diff < 0) {
             //Toast.makeText(this,"再大一點",Toast.LENGTH_LONG).show()
-            msg = "再大一點"
+            msg = getString(R.string.bigger)
         } else if (diff > 0 ){
             //Toast.makeText(this,"小一點",Toast.LENGTH_LONG).show()
-            msg = "小一點"
+            msg = getString(R.string.smaller)
         }
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
+        var toast =  Toast.makeText(this,msg,Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.CENTER_VERTICAL , 0 ,0)
+        toast.show();
+
 
         AlertDialog.Builder(this).
-        setTitle("message").
+        setTitle(getString(R.string.dialog_title)).
+        //setTitle(TAG).
         setMessage(msg).
-        setPositiveButton("ok",null).
+        setPositiveButton(getString(R.string.ok),null).
         show()
 
 
