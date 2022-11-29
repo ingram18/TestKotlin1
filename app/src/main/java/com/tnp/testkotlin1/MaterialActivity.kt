@@ -6,7 +6,10 @@ import android.content.DialogInterface.OnClickListener
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +22,7 @@ import com.tnp.testkotlin1.databinding.ActivityMaterialBinding
 import kotlinx.android.synthetic.main.content_material.*
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlin.math.log
+import android.widget.AdapterView.OnItemSelectedListener as OnItemSelectedListener1
 
 class MaterialActivity : AppCompatActivity() {
 
@@ -78,7 +82,49 @@ class MaterialActivity : AppCompatActivity() {
         //spinner
         var colors = arrayOf("red","green","yellow")
         var adapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, colors)
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         spinner3.adapter = adapter
+
+        var a = object : OnItemSelectedListener1 {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                Toast.makeText(this@MaterialActivity ,"你點了${colors[p2]}", Toast.LENGTH_LONG).show()
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+        spinner3.onItemSelectedListener = a
+
+
+
+
+
+
+
+
+/*
+        spinner3.onItemSelectedListener = object : OnItemSelectedListener1 {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                Toast.makeText(this@MaterialActivity ,"hi", Toast.LENGTH_LONG).show()
+
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+
+        }*/
+
+
+
 
     }
 

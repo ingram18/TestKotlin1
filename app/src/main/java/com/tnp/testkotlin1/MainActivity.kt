@@ -8,9 +8,13 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.tnp.testJava1.lottery.BigGame
 import com.tnp.testkotlin1.androiduse.SecretNumber
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +30,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var testText : TextView  //https://ithelp.ithome.com.tw/articles/10240620
     private lateinit var btn : Button
 
+    val functions = listOf<String>("Camera",
+        "Invite friend",
+        "Parking",
+        "download coupons",
+        "News",
+        "Maps")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +47,28 @@ class MainActivity : AppCompatActivity() {
 
         testText = findViewById(R.id.number);
         Log.d(TAG,testText.text.toString());
+
+
+        //RecyclerView
+
+
+        )
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = adapter
+
+
+    }
+
+    inner class FunctionAdapter() : Adapter<String> {
+
+        fun test1() {
+            functions
+        }
+    }
+
+    class FunctionHolder(view : View) : ViewHolder(view) {
 
     }
 
@@ -71,8 +104,19 @@ class MainActivity : AppCompatActivity() {
         show()
 
 
+
+
+
+
+
+
     }
+
+
+
 }
+
+
 
 fun main(args: Array<String>) {
     //KeyinTest(args)
