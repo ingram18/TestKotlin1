@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -20,6 +22,8 @@ import com.tnp.testkotlin1.androiduse.SecretNumber
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.linear_main.view.*
+import kotlinx.android.synthetic.main.linear_main.view.textView
+import kotlinx.android.synthetic.main.row_function.view.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,25 +56,45 @@ class MainActivity : AppCompatActivity() {
         //RecyclerView
 
 
-        )
+
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = FunctionAdapter()
 
 
     }
 
-    inner class FunctionAdapter() : Adapter<String> {
+    class FunctionHolder(itemView: View) : ViewHolder(itemView) {
+        var nameText = itemView.textView
+    }
+
+    inner class FunctionAdapter() : Adapter<FunctionHolder>() {
 
         fun test1() {
             functions
         }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FunctionHolder {
+
+
+            val  view = LayoutInflater.from(parent.context).inflate(R.layout.row_function,parent,false)
+            var holder = FunctionHolder(view)
+            return holder
+        }
+
+        override fun onBindViewHolder(holder: FunctionHolder, position: Int) {
+
+            holder.nameText.text = functions.get(position).toString()
+
+
+        }
+
+        override fun getItemCount(): Int {
+            return functions.size
+        }
     }
 
-    class FunctionHolder(view : View) : ViewHolder(view) {
-
-    }
 
 
     fun check(view : View) {
